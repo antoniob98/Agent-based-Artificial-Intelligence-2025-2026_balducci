@@ -9,7 +9,9 @@ class Node:
         self.path_cost = path_cost
 
     def __repr__(self):
-        return f"([NODE] State: {self.state}, Action: {self.action}, Parent: {self.parent._state}, Cost: {self.cost})"
+        if self.parent is None:
+            return f"([ROOT NODE] State: {self.state}, Action: {self.action}, Cost: {self.path_cost})"
+        return f"([NODE] State: {self.state}, Action: {self.action}, Parent: {self.parent.state}, Cost: {self.path_cost})"
 
     def path(self):
         if self.parent is None:
