@@ -11,3 +11,4 @@ class UniformCostStrategy:
         fringe.sort(key=lambda node: node.path_cost)
         selected_node = fringe.pop(0)
         return fringe, selected_node
+    

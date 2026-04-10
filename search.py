@@ -22,12 +22,9 @@ class Search:
         visited = dict()
 
         while len(fringe) > 0:
-            # print(f'Fringe: {[node.state for node in fringe]}')
             fringe, node = self.strategy.select(fringe)
             if node.state in visited and visited[node.state] <= node.path_cost:
                 continue
-            # print(f'Selected node: {node.state} with action {node.action}, from parent {node.parent.state if node.parent else None} path cost {node.path_cost}')
-            # print(f'Mlx, Clx, Mdx, Cdx: {self.problem.decode_state(node.state)}')
 
             if self.problem.is_goal(node.state):
                 return node
