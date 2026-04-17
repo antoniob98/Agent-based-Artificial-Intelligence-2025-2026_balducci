@@ -61,3 +61,18 @@ class AStarStrategy:
     def select(self, fringe):
         fringe.sort(key=lambda node: self.problem.heuristic(node.state) + node.path_cost)
         return fringe, fringe.pop(0)
+
+class ExamDepthLimitedStrategy:
+    def select(self, fringe):
+        fringe = [node for node in fringe if node.depth <= 10]
+        selected_node = fringe.pop()
+        return fringe, selected_node
+    
+class ExamAStar:
+    def __init__(self, problem):
+        self.problem = problem
+
+    def select(self, fringe):
+        fringe = sorted(fringe, key= lambda x: x.path_cost + self.problem.heuristic(x.state))
+        selected_node = fringe.pop(0)
+        return fringe, selected_node
